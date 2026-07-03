@@ -292,6 +292,8 @@
   .tswatch{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.08);}
   .tswatch i{display:block;width:13px;height:13px;border-radius:50%;}
 
+  .ver{font-size:10.5px;color:var(--ink-3);text-align:center;padding:10px 0 2px;font-variant-numeric:tabular-nums;}
+
   /* toast */
   .toast{position:fixed;left:50%;transform:translateX(-50%) translateY(12px);bottom:calc(24px + env(safe-area-inset-bottom));
     background:var(--ink);color:#fff;font-size:13px;font-weight:500;padding:10px 16px;border-radius:999px;
@@ -466,6 +468,7 @@
     <svg viewBox="0 0 24 24"><path d="M4 7h16M9 7V5a1 1 0 011-1h4a1 1 0 011 1v2M6 7l1 13a1 1 0 001 1h8a1 1 0 001-1l1-13"/></svg>
     予定をすべて削除
   </button>
+  <div class="ver" id="verLabel"></div>
   <input type="file" id="importInput" accept="application/json,.json" style="display:none">
 </div>
 
@@ -475,6 +478,7 @@
 (function(){
   "use strict";
 
+  var APP_VER='2026-07-04.1';
   // Monday-first weekday labels
   var WD = ['月','火','水','木','金','土','日'];
   var NONE = '__none';
@@ -1359,7 +1363,7 @@
   $('manageLabelsBtn').addEventListener('click',function(){ renderLabelsList(); showSheet('labels'); });
   $('addLabelBtn').addEventListener('click',function(){ openLabelEditor(null,'labels'); });
 
-  $('reloadBtn').addEventListener('click',function(){ location.reload(); });
+  $('reloadBtn').addEventListener('click',function(){ location.replace(location.pathname + '?v=' + Date.now()); });
   $('exportBtn').addEventListener('click',exportData);
   $('importBtn').addEventListener('click',function(){ importInput.click(); });
   importInput.addEventListener('change',function(e){ var f=e.target.files&&e.target.files[0]; if(f) importData(f); });
@@ -1381,6 +1385,7 @@
   }
   reindex();
   applyTheme();
+  $('verLabel').textContent='バージョン '+APP_VER;
   buildWeekdays();
   buildLabelColors();
   selectedKey=todayKey();
