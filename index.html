@@ -26,7 +26,6 @@
     --hol-tint:#F0E0D9;
     --sat-tint:#E1E3E9;
     --rose:#C4372E;
-    --none:#B0B5BA;
   }
   body.theme-b{
     --paper:#F1F4F5;
@@ -65,7 +64,6 @@
   }
   body.locked{overflow:hidden;}
   button{font-family:inherit;}
-  .muted{color:var(--ink-2);}
   :focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
   button:focus:not(:focus-visible){outline:none;}
 
@@ -93,8 +91,6 @@
   .icon-btn:active{background:var(--line);}
   .icon-btn svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;}
   .icon-btn.dots svg{fill:currentColor;stroke:none;}
-  .icon-btn.sm{width:32px;height:32px;}
-  .icon-btn.sm svg{width:19px;height:19px;}
 
   .today-btn{appearance:none;border:none;background:transparent;color:var(--ink);
     font-size:13px;font-weight:500;padding:8px 10px;border-radius:8px;cursor:pointer;
@@ -141,7 +137,7 @@
   .agenda-day{display:flex;align-items:center;gap:10px;padding:2px 2px 1px;line-height:1.2;}
   .agenda-day.first{padding-top:0;}
   .agenda-date{display:flex;align-items:baseline;gap:6px;flex:none;}
-  .agenda-date .d{font-size:18px;font-weight:300;font-variant-numeric:tabular-nums;letter-spacing:0;color:var(--ink);line-height:1.2;}
+  .agenda-date .d{font-size:16px;font-weight:300;font-variant-numeric:tabular-nums;letter-spacing:0;color:var(--ink);line-height:1.2;}
   .agenda-date .wdlab{font-size:12px;font-weight:500;color:var(--ink-2);}
   .agenda-date.sun .wdlab{color:var(--sun);}
   .agenda-date.sat .wdlab{color:var(--sat);}
@@ -168,7 +164,9 @@
   .ev-chip{flex:none;font-size:10px;font-weight:500;letter-spacing:.04em;color:#fff;line-height:1.35;
     padding:0 3px;border-radius:2.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:40%;}
   .ev-title{flex:1;font-size:14px;font-weight:400;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;line-height:1.2;}
-  .ev-title .ev-place{color:var(--ink-2);}
+  .ev-title .ev-place{color:var(--ink-2);font-size:12px;}
+  .ev-star{flex:none;display:flex;margin-left:2px;}
+  .ev-star svg{width:14px;height:14px;fill:#EFB53C;stroke:none;}
   .empty{color:var(--ink-3);font-size:14px;text-align:center;padding:16px 6px;}
 
   /* year view */
@@ -218,7 +216,6 @@
   .handle{width:38px;height:4px;border-radius:999px;background:var(--line);margin:2px auto 10px;}
   .sheet-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:6px;}
   .sheet-title{font-size:18px;font-weight:500;letter-spacing:.01em;}
-  .sheet-title .muted{font-size:13px;font-weight:400;margin-left:6px;}
 
   /* buttons */
   .btn-primary{appearance:none;border:none;width:100%;background:var(--accent);color:var(--paper);font-size:15px;
@@ -248,8 +245,6 @@
   .thumb{position:absolute;top:3px;left:3px;width:22px;height:22px;background:#fff;border-radius:50%;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .2s;pointer-events:none;}
   .switch input:checked ~ .track{background:var(--accent);}
   .switch input:checked ~ .thumb{transform:translateX(18px);}
-  .time-row{display:flex;gap:10px;}
-  .time-row .col{flex:1;}
   .dt-row{display:flex;gap:8px;}
   .dt-row input[type=date]{flex:1;min-width:0;}
   .dt-time{width:110px;flex:none;}
@@ -379,8 +374,8 @@
   <div class="field"><input class="input" id="titleInput" type="text" placeholder="タイトル" autocomplete="off"></div>
 
   <div class="switch-row">
-    <span class="t">終日</span>
-    <label class="switch"><input type="checkbox" id="allDay"><span class="track"></span><span class="thumb"></span></label>
+    <span class="t">行った</span>
+    <label class="switch"><input type="checkbox" id="wentToggle"><span class="track"></span><span class="thumb"></span></label>
   </div>
 
   <div class="field">
@@ -448,6 +443,11 @@
     <button class="theme-opt" data-theme="c"><span class="tswatch" style="background:#F3F6F0"><i style="background:#46543F"></i></span><span>若葉</span></button>
   </div>
   <div class="menu-sep"></div>
+  <button class="menu-item" id="reloadBtn">
+    <svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v5h-5"/></svg>
+    ページを更新
+  </button>
+  <div class="menu-sep"></div>
   <button class="menu-item" id="manageLabelsBtn">
     <svg viewBox="0 0 24 24"><path d="M20.6 13.4l-7-7A2 2 0 0012 6H5a1 1 0 00-1 1v7a2 2 0 00.6 1.4l7 7a2 2 0 002.8 0l4.2-4.2a2 2 0 000-2.8z"/><circle cx="8.5" cy="10.5" r="1.2" fill="currentColor" stroke="none"/></svg>
     ラベルを管理
@@ -492,7 +492,7 @@
   var backdrop=$('backdrop');
   var formPanel=$('formPanel'), labelEditorPanel=$('labelEditorPanel'), labelsPanel=$('labelsPanel'), menuPanel=$('menuPanel');
   var monthBottom=$('monthBottom'), bottomTitle=$('bottomTitle'), bottomBody=$('bottomBody'), bmDay=$('bmDay'), bmList=$('bmList');
-  var startDate=$('startDate'), endDate=$('endDate'), titleInput=$('titleInput'), allDay=$('allDay');
+  var startDate=$('startDate'), endDate=$('endDate'), titleInput=$('titleInput'), wentToggle=$('wentToggle');
   var startInput=$('startInput'), endInput=$('endInput'), noteInput=$('noteInput'), placeInput=$('placeInput'), labelPicker=$('labelPicker');
   var formHeading=$('formHeading'), deleteBtn=$('deleteBtn'), saveBtn=$('saveBtn'), saveAddBtn=$('saveAddBtn');
   var labelNameInput=$('labelNameInput'), labelColorRow=$('labelColorRow'), labelEditorHeading=$('labelEditorHeading'), labelDeleteBtn=$('labelDeleteBtn'), labelSaveBtn=$('labelSaveBtn');
@@ -633,19 +633,9 @@
   function labelColor(id){ if(!id||id===NONE) return NONE_COLOR; return labelMap[id]?labelMap[id].color:NONE_COLOR; }
   function labelName(id){ if(!id||id===NONE) return ''; return labelMap[id]?labelMap[id].name:''; }
 
-  function sortEvents(arr){
-    return arr.slice().sort(function(a,b){
-      var rank=function(e){ return e.allDay?0:(e.start?1:2); };
-      var ra=rank(a),rb=rank(b);
-      if(ra!==rb) return ra-rb;
-      if(!a.allDay&&!b.allDay&&a.start&&b.start) return a.start<b.start?-1:(a.start>b.start?1:0);
-      return 0;
-    });
-  }
-
-  // ---------- occurrences (midnight-crossing ends roll up to start day, 30h-style) ----------
+  // ---------- occurrences（1日跨ぎまでは開始日のみにカード。終了が翌5:00までは+24表記） ----------
   var OCC={};
-  var LATE='04:00';   // 跨ぎ予定の終了がこの時刻まで（含む）なら開始日の単日扱い（〜28:00表記）
+  var LATE='05:00';   // 跨ぎ予定の終了がこの時刻まで（含む）なら 26:00 のような+24表記
   function plus24(t){ var p=t.split(':'); return (+p[0]+24)+':'+p[1]; }
   function shiftKey(k,n){ var d=dateFromKey(k); d.setDate(d.getDate()+n); return keyOf(d.getFullYear(),d.getMonth(),d.getDate()); }
 
@@ -655,18 +645,24 @@
       (events[sk]||[]).forEach(function(ev){
         var ek = ev.endDate || sk;
         if(dateFromKey(ek) < dateFromKey(sk)) ek = sk;
-        var timed = !ev.allDay;
 
-        // 単日にまるめられるか（跨ぎで終了が翌4:00までなら開始日の単日扱い）
-        var single = false, dispEnd = ev.end || '';
-        if(ek === sk){
-          single = true;
-        } else if(timed && ev.end && ev.end <= LATE && ek === shiftKey(sk,1)){
-          single = true; dispEnd = plus24(ev.end);
-        }
-
-        if(single){
-          (OCC[sk]=OCC[sk]||[]).push({ev:ev, startKey:sk, multi:false, isStart:true, isEnd:true, dispStart:(ev.start||''), dispEnd:dispEnd});
+        if(ek === sk || ek === shiftKey(sk,1)){
+          var cross=(ek!==sk);
+          var home=sk;
+          var dispStart=ev.start||'';
+          var dispEnd=ev.end||'';
+          var rolled=false;
+          if(!cross && ev.start && ev.start<LATE){
+            // 深夜開始（5:00より前・実日が同一日）→ 前日扱い、開始終了とも+24
+            home=shiftKey(sk,-1);
+            dispStart=plus24(ev.start);
+            if(ev.end) dispEnd=plus24(ev.end);
+            rolled=true;
+          } else if(cross && ev.end && ev.end<=LATE){
+            dispEnd=plus24(ev.end); rolled=true;
+          }
+          (OCC[home]=OCC[home]||[]).push({ev:ev, startKey:sk, multi:false, isStart:true, isEnd:true,
+            cross:cross, rolled:rolled, dispStart:dispStart, dispEnd:dispEnd});
         } else {
           var d=dateFromKey(sk), eD=dateFromKey(ek), guard=0;
           while(d<=eD && guard<366){
@@ -688,7 +684,12 @@
   }
   function occMeta(o){
     var e=o.ev;
-    if(!o.multi){ return e.allDay?'終日':(o.dispStart?(o.dispStart+(o.dispEnd?('–'+o.dispEnd):'')):''); }
+    if(!o.multi){
+      if(e.allDay) return '終日';
+      if(!o.dispStart) return '';
+      var sep = (o.cross && !o.rolled) ? '~' : '–';
+      return o.dispStart + (o.dispEnd ? (sep+o.dispEnd) : (o.cross?' ~':''));
+    }
     if(e.allDay) return '終日';
     if(o.isStart) return (o.dispStart||'')+' ~';
     if(o.isEnd) return '~ '+(o.dispEnd||'');
@@ -841,35 +842,52 @@
     renderAgendaInto(agenda, days, '今週の予定はありません');
   }
 
-  // ---------- year view (notebook-style: months as columns, label bands run down) ----------
+  // ---------- year view (notebook-style; runs pack into the fewest lanes per month) ----------
   var MAX_YLANES=4;
   function renderYear(){
     var y=anchor.getFullYear();
     var yearHol=holidaysOf(y);
     ygrid.innerHTML='';
-    // per month/day label sets from occurrences
-    var sets={};
-    Object.keys(OCC).forEach(function(k){
-      if(k.slice(0,4)!==(''+y)) return;
-      var m=+k.slice(5,7)-1, d=+k.slice(8,10);
-      var ms=(sets[m]=sets[m]||{}); var ds=(ms[d]=ms[d]||{});
-      OCC[k].forEach(function(o){ ds[lidOf(o.ev)]=true; });
-    });
-    // lane order across the year
-    var order=[], seen={};
-    labels.forEach(function(l){
-      outer: for(var m=0;m<12;m++){ var ms=sets[m]; if(!ms) continue;
-        for(var d in ms){ if(ms[d][l.id]){ if(!seen[l.id]){seen[l.id]=true; order.push(l.id);} break outer; } } }
-    });
-    var noneUsed=false;
-    for(var m2=0;m2<12 && !noneUsed;m2++){ var ms2=sets[m2]; if(!ms2) continue;
-      for(var d2 in ms2){ if(ms2[d2][NONE]){ noneUsed=true; break; } } }
-    if(noneUsed) order.push(NONE);
-    if(order.length>MAX_YLANES) order=order.slice(0,MAX_YLANES);
+
+    // 月ごとに「連続日run」を作り、空いたレーンへ詰める（重ならなければ同じレーンを共有）
+    var occ2=[], laneN=[];
+    for(var m=0;m<12;m++){
+      occ2[m]={};
+      var last=new Date(y,m+1,0).getDate();
+      var dayset={};
+      for(var d0=1; d0<=last; d0++){
+        var k0=keyOf(y,m,d0), list=OCC[k0];
+        if(list){ var st={}; list.forEach(function(o){ st[lidOf(o.ev)]=true; }); dayset[d0]=st; }
+      }
+      var ids=labels.map(function(l){ return l.id; }); ids.push(NONE);
+      var runs=[];
+      ids.forEach(function(id){
+        var d=1;
+        while(d<=last){
+          if(dayset[d]&&dayset[d][id]){
+            var st2=d;
+            while(d+1<=last && dayset[d+1] && dayset[d+1][id]) d++;
+            runs.push({id:id, from:st2, to:d});
+          }
+          d++;
+        }
+      });
+      runs.sort(function(a,b){ return a.from-b.from || a.to-b.to; });
+      var laneEnd=[];
+      runs.forEach(function(r){
+        var li=-1;
+        for(var i=0;i<laneEnd.length;i++){ if(laneEnd[i] < r.from-1){ li=i; break; } }
+        if(li<0){ if(laneEnd.length>=MAX_YLANES) return; li=laneEnd.length; laneEnd.push(0); }
+        laneEnd[li]=r.to;
+        for(var dd=r.from; dd<=r.to; dd++){
+          (occ2[m][dd]=occ2[m][dd]||{})[li]={c:labelColor(r.id), up:dd>r.from, dn:dd<r.to};
+        }
+      });
+      laneN[m]=laneEnd.length;
+    }
 
     var t=new Date(), ty=t.getFullYear(), tm=t.getMonth(), td=t.getDate();
 
-    // header row
     var corner=document.createElement('span'); ygrid.appendChild(corner);
     for(var mh=0; mh<12; mh++){
       var mb=document.createElement('button'); mb.type='button';
@@ -880,36 +898,33 @@
       }); })(mh);
       ygrid.appendChild(mb);
     }
-    // day rows
     for(var d=1; d<=31; d++){
       var dl=document.createElement('span'); dl.className='yd'; dl.textContent=d;
       ygrid.appendChild(dl);
-      for(var m=0; m<12; m++){
-        var last=new Date(y,m+1,0).getDate();
-        if(d>last){
+      for(var m2=0; m2<12; m2++){
+        var last2=new Date(y,m2+1,0).getDate();
+        if(d>last2){
           var x=document.createElement('span'); x.className='yx';
           ygrid.appendChild(x);
           continue;
         }
-        var cell=document.createElement('button'); cell.type='button';
-        var kY=keyOf(y,m,d);
-        var wdY=new Date(y,m,d).getDay();
+        var kY=keyOf(y,m2,d);
+        var wdY=new Date(y,m2,d).getDay();
         var cCls='ycell';
         if(wdY===6) cCls+=' sat';
         if(wdY===0 || yearHol[kY]) cCls+=' hol';
         if(kY===selectedKey) cCls+=' sel';
-        if(y===ty&&m===tm&&d===td) cCls+=' today';
+        if(y===ty&&m2===tm&&d===td) cCls+=' today';
+        var cell=document.createElement('button'); cell.type='button';
         cell.className=cCls;
-        var ds=sets[m]&&sets[m][d];
-        for(var li=0; li<order.length; li++){
+        var slots=occ2[m2][d];
+        for(var li2=0; li2<laneN[m2]; li2++){
           var slot=document.createElement('span'); slot.className='yslot';
-          var id=order[li];
-          if(ds && ds[id]){
+          var b0=slots&&slots[li2];
+          if(b0){
             var b=document.createElement('span');
-            var up = d>1 && sets[m][d-1] && sets[m][d-1][id];
-            var dn = d<last && sets[m][d+1] && sets[m][d+1][id];
-            b.className='yband'+(up?' cu':'')+(dn?' cd':'');
-            b.style.background=labelColor(id);
+            b.className='yband'+(b0.up?' cu':'')+(b0.dn?' cd':'');
+            b.style.background=b0.c;
             slot.appendChild(b);
           }
           cell.appendChild(slot);
@@ -958,6 +973,11 @@
     var title=document.createElement('span'); title.className='ev-title'; title.textContent=ev.title||'(無題)';
     if(ev.place){ var pl=document.createElement('span'); pl.className='ev-place'; pl.textContent='・'+ev.place; title.appendChild(pl); }
     line.appendChild(title);
+    if(ev.went){
+      var star=document.createElement('span'); star.className='ev-star';
+      star.innerHTML='<svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.3l6.1-.7z"/></svg>';
+      line.appendChild(star);
+    }
     main.appendChild(line);
     row.appendChild(main);
     row.addEventListener('click',function(){ openForm(o.startKey, ev); });
@@ -1058,7 +1078,6 @@
   var editing=null;   // {key, id}
   var selLabelId=null;
 
-  function updateTimeVisibility(){ var d = allDay.checked?'none':''; startInput.style.display=d; endInput.style.display=d; }
 
   function refreshLabelPicker(){
     labelPicker.innerHTML='';
@@ -1087,14 +1106,13 @@
     endDate.value= ev? (ev.endDate||dateKey) : dateKey;
     formHeading.textContent= ev?'予定を編集':'新しい予定';
     titleInput.value= ev?ev.title:''; titleInput.classList.remove('err');
-    allDay.checked= ev?!!ev.allDay:false;
+    wentToggle.checked= ev?!!ev.went:false;
     startInput.value= (ev&&ev.start)?ev.start:'';
     endInput.value= (ev&&ev.end)?ev.end:'';
     noteInput.value= (ev&&ev.note)?ev.note:'';
     placeInput.value= (ev&&ev.place)?ev.place:'';
     selLabelId= ev? (ev.labelId||null) : null;
     refreshLabelPicker();
-    updateTimeVisibility();
     deleteBtn.style.display= ev?'':'none';
     saveAddBtn.style.display= ev?'none':'';
     showSheet('form');
@@ -1107,11 +1125,10 @@
     if(!sK){ toast('開始日を選んでください'); return null; }
     var eK=endDate.value||sK;
     if(dateFromKey(eK)<dateFromKey(sK)){ toast('終了日は開始日以降にしてください'); return null; }
-    var isAllDay=allDay.checked;
     var rec={
       id: editing.id || genId(),
-      title:title, allDay:isAllDay,
-      start:isAllDay?'':startInput.value, end:isAllDay?'':endInput.value,
+      title:title, allDay:false, went:wentToggle.checked,
+      start:startInput.value, end:endInput.value,
       endDate:eK, labelId:selLabelId, place:placeInput.value.trim(), note:noteInput.value.trim()
     };
     return {rec:rec, key:sK};
@@ -1136,6 +1153,7 @@
       endDate.value=keyOf(ne.getFullYear(),ne.getMonth(),ne.getDate());
       titleInput.value=''; titleInput.classList.remove('err');
       noteInput.value='';
+      wentToggle.checked=false;
       formHeading.textContent='新しい予定';
       deleteBtn.style.display='none';
       renderCurrentView();
@@ -1256,7 +1274,7 @@
 
   // ---------- backup ----------
   function exportData(){
-    var data=JSON.stringify({v:2,exportedAt:new Date().toISOString(),events:events,labels:labels},null,2);
+    var data=JSON.stringify({v:2,exportedAt:new Date().toISOString(),events:events,labels:labels,theme:theme},null,2);
     var blob=new Blob([data],{type:'application/json'}); var url=URL.createObjectURL(blob);
     var a=document.createElement('a'); var t=new Date();
     a.href=url; a.download='calendar-backup-'+t.getFullYear()+pad(t.getMonth()+1)+pad(t.getDate())+'.json';
@@ -1327,7 +1345,6 @@
   saveBtn.addEventListener('click',function(){ saveForm(false); });
   saveAddBtn.addEventListener('click',function(){ saveForm(true); });
   deleteBtn.addEventListener('click',deleteEvent);
-  allDay.addEventListener('change',updateTimeVisibility);
   titleInput.addEventListener('input',function(){ titleInput.classList.remove('err'); });
   $('formClose').addEventListener('click',closeSheet);
 
@@ -1342,6 +1359,7 @@
   $('manageLabelsBtn').addEventListener('click',function(){ renderLabelsList(); showSheet('labels'); });
   $('addLabelBtn').addEventListener('click',function(){ openLabelEditor(null,'labels'); });
 
+  $('reloadBtn').addEventListener('click',function(){ location.reload(); });
   $('exportBtn').addEventListener('click',exportData);
   $('importBtn').addEventListener('click',function(){ importInput.click(); });
   importInput.addEventListener('change',function(e){ var f=e.target.files&&e.target.files[0]; if(f) importData(f); });
