@@ -480,7 +480,7 @@
 (function(){
   "use strict";
 
-  var APP_VER='2026-07-04.2';
+  var APP_VER='2026-07-11.1';
   // Monday-first weekday labels
   var WD = ['月','火','水','木','金','土','日'];
   var NONE = '__none';
@@ -713,27 +713,55 @@
     });
   }
 
-  // ---------- render: cells with connecting label lanes ----------
+  // ---------- render: cells（run単位でレーン詰め。連続日はつながり、空きレーンは再利用） ----------
   function renderCells(container, days){
     container.innerHTML='';
+    var n=days.length;
 
-    // label set per day + ordered lanes across the range
-    var setByKey={}, seen={}, order=[];
-    days.forEach(function(day){
-      var list=OCC[day.key];
-      var set={};
-      if(list){ list.forEach(function(o){ set[lidOf(o.ev)]=true; }); }
-      setByKey[day.key]=set;
+    // 1) 日ごとのラベル集合
+    var setByIdx=[];
+    for(var i=0;i<n;i++){
+      var st={}, list=OCC[days[i].key];
+      if(list){ list.forEach(function(o){ st[lidOf(o.ev)]=true; }); }
+      setByIdx.push(st);
+    }
+
+    // 2) 連続日run抽出（ラベル順→NONE）
+    var ids=labels.map(function(l){ return l.id; }); ids.push(NONE);
+    var runs=[];
+    ids.forEach(function(id){
+      var i=0;
+      while(i<n){
+        if(setByIdx[i][id]){
+          var s0=i;
+          while(i+1<n && setByIdx[i+1][id]) i++;
+          runs.push({id:id, from:s0, to:i});
+        }
+        i++;
+      }
     });
-    // lane order: follow labels[] order, then NONE last, only those present
-    labels.forEach(function(l){
-      for(var i=0;i<days.length;i++){ if(setByKey[days[i].key][l.id]){ if(!seen[l.id]){seen[l.id]=true;order.push(l.id);} break; } }
+    runs.sort(function(a,b){ return a.from-b.from || a.to-b.to; });
+
+    // 3) 区間詰め（1日以上あけて空いたレーンを再利用）
+    var laneEnd=[];
+    runs.forEach(function(r){
+      var li=-1;
+      for(var j=0;j<laneEnd.length;j++){ if(laneEnd[j] < r.from-1){ li=j; break; } }
+      if(li<0){ if(laneEnd.length>=MAX_LANES) return; li=laneEnd.length; laneEnd.push(0); }
+      laneEnd[li]=r.to;
+      r.lane=li;
     });
-    var noneUsed=false;
-    for(var j=0;j<days.length;j++){ if(setByKey[days[j].key][NONE]){ noneUsed=true; break; } }
-    if(noneUsed) order.push(NONE);
-    if(order.length>MAX_LANES) order=order.slice(0,MAX_LANES);
-    var N=order.length;
+
+    // 4) 日×レーンの占有表
+    var occ=[], maxLane=[];
+    for(var i2=0;i2<n;i2++){ occ.push({}); maxLane.push(-1); }
+    runs.forEach(function(r){
+      if(r.lane===undefined) return;
+      for(var d=r.from; d<=r.to; d++){
+        occ[d][r.lane]={ c:labelColor(r.id), up:(d>r.from), dn:(d<r.to) };
+        if(r.lane>maxLane[d]) maxLane[d]=r.lane;
+      }
+    });
 
     var tK=todayKey();
 
@@ -757,14 +785,13 @@
       nw.appendChild(num); cell.appendChild(nw);
 
       var lanes=document.createElement('span'); lanes.className='lanes';
-      for(var li=0; li<N; li++){
+      for(var li=0; li<=maxLane[i]; li++){
         var laneEl=document.createElement('span'); laneEl.className='lane';
-        var id=order[li];
-        if(setByKey[key][id]){
+        var b0=occ[i][li];
+        if(b0){
           var band=document.createElement('span'); band.className='band';
-          band.style.background=labelColor(id);
-          var hasPrev = i>0 && setByKey[days[i-1].key][id];
-          var hasNext = i<days.length-1 && setByKey[days[i+1].key][id];
+          band.style.background=b0.c;
+          var hasPrev=b0.up, hasNext=b0.dn;
           var isRowStart = col===0, isRowEnd = col===6;
           var mL='3px', mR='3px', rTL='1.5px', rBL='1.5px', rTR='1.5px', rBR='1.5px';
           if(hasPrev && !isRowStart){ mL='-3px'; rTL='0'; rBL='0'; }
@@ -1025,7 +1052,15 @@
       var dt=dateFromKey(k);
       var hn=isHol(k);
       bottomTitle.textContent=(dt.getMonth()+1)+'月'+dt.getDate()+'日（'+WD[(dt.getDay()+6)%7]+(hn?('・'+hn):'')+'）';
-      var list=occSort(OCC[k]||[]);
+      var list=(OCC[k]||[]).slice();
+      // 前日ロールで前日側に置かれた予定は、実日の「この日」にも実時刻で出す
+      (OCC[shiftKey(k,-1)]||[]).forEach(function(o){
+        if(!o.multi && o.rolled && !o.cross && o.startKey===k){
+          list.push({ev:o.ev, startKey:o.startKey, multi:false, isStart:true, isEnd:true,
+            cross:false, rolled:false, dispStart:(o.ev.start||''), dispEnd:(o.ev.end||'')});
+        }
+      });
+      list=occSort(list);
       if(!list.length){ var e=document.createElement('div'); e.className='empty'; e.textContent='この日の予定はありません'; bottomBody.appendChild(e); }
       else { list.forEach(function(o){ bottomBody.appendChild(eventRow(o)); }); }
       var add=document.createElement('button'); add.className='btn-primary'; add.textContent='＋ 予定を追加';
