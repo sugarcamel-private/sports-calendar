@@ -296,6 +296,88 @@
 
   .ver{font-size:10.5px;color:var(--ink-3);text-align:center;padding:10px 0 2px;font-variant-numeric:tabular-nums;}
 
+  .hint{font-size:12px;line-height:1.5;color:var(--ink-2);margin:0 2px 8px;}
+  .preset-row{display:flex;flex-wrap:wrap;gap:7px;}
+  .preset-chip{appearance:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);
+    font-size:12.5px;font-weight:400;padding:6px 11px;border-radius:999px;cursor:pointer;touch-action:manipulation;transition:border-color .12s,background .12s;}
+  .preset-chip:active{background:var(--accent-tint);}
+  .fmt-preview{font-size:11.5px;color:var(--ink-2);margin:-2px 2px 0;min-height:16px;font-variant-numeric:tabular-nums;line-height:1.5;}
+  .row-sub{font-size:11.5px;color:var(--ink-2);font-variant-numeric:tabular-nums;margin-top:1px;}
+  .chk-list{display:flex;flex-direction:column;gap:2px;}
+  .chk-row{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:transparent;border:none;
+    padding:10px 6px;border-radius:8px;cursor:pointer;touch-action:manipulation;transition:background .12s;}
+  .chk-row:active{background:var(--line);}
+  .chk-box{width:20px;height:20px;flex:none;border:1.5px solid var(--ink-3);border-radius:5px;display:grid;place-items:center;color:var(--paper);}
+  .chk-row.on .chk-box{background:var(--accent);border-color:var(--accent);}
+  .chk-box svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;opacity:0;}
+  .chk-row.on .chk-box svg{opacity:1;}
+  .chk-row .cname{font-size:14.5px;color:var(--ink);}
+
+  /* result recording */
+  .rtabs{display:flex;gap:6px;overflow-x:auto;margin:0 0 10px;-webkit-overflow-scrolling:touch;}
+  .rtab{flex:none;appearance:none;border:1px solid var(--line);background:var(--surface);color:var(--ink-2);
+    font-size:12.5px;font-weight:500;padding:6px 12px;border-radius:999px;cursor:pointer;touch-action:manipulation;}
+  .rtab.on{border-color:var(--accent);background:var(--accent);color:var(--paper);}
+  .rformats{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 12px;}
+  .rfmt{appearance:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);
+    font-size:12.5px;font-weight:500;padding:6px 12px;border-radius:8px;cursor:pointer;touch-action:manipulation;}
+  .rfmt.on{border-color:var(--accent);background:var(--accent-tint);}
+  .rsec-label{font-size:11.5px;font-weight:500;color:var(--ink-2);letter-spacing:.06em;margin:2px 2px 8px;}
+  .half-row{display:flex;align-items:center;justify-content:space-between;padding:4px 2px 12px;}
+  .half-row .t{font-size:14px;font-weight:400;color:var(--ink);}
+  .order-list{display:flex;flex-direction:column;gap:4px;margin-bottom:12px;}
+  .order-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;background:var(--accent-tint);}
+  .order-pos{flex:none;width:30px;font-size:15px;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums;text-align:center;}
+  .order-name{flex:1;min-width:0;font-size:14.5px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .order-pts{flex:none;font-size:12px;color:var(--ink-2);font-variant-numeric:tabular-nums;}
+  .order-x{flex:none;appearance:none;border:none;background:transparent;color:var(--ink-3);cursor:pointer;padding:2px;display:flex;}
+  .order-x svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+  .pool{display:flex;flex-wrap:wrap;gap:7px;}
+  .pool-chip{appearance:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);
+    font-size:13px;font-weight:400;padding:7px 12px;border-radius:999px;cursor:pointer;touch-action:manipulation;transition:background .12s;}
+  .pool-chip:active{background:var(--accent-tint);}
+  .pool-empty{font-size:12.5px;color:var(--ink-3);padding:6px 2px;}
+  .fin-note{font-size:11px;color:var(--ink-3);margin:0 2px 8px;line-height:1.5;}
+  .gap-sel{flex:none;font-size:11.5px;color:var(--ink);background:var(--paper);border:1px solid var(--line);
+    border-radius:5px;padding:3px 4px;font-family:inherit;}
+  .dnf-btn{flex:none;appearance:none;border:1.5px solid var(--ink-3);background:transparent;color:var(--ink-3);
+    font-size:10.5px;font-weight:700;letter-spacing:.04em;padding:3px 7px;border-radius:5px;cursor:pointer;touch-action:manipulation;}
+  .dnf-btn.on{background:var(--rose);border-color:var(--rose);color:#fff;}
+
+  /* ranking */
+  .panel.wide{max-width:min(96vw,720px);}
+  .rank-seasons{display:flex;gap:6px;overflow-x:auto;margin:0 0 10px;-webkit-overflow-scrolling:touch;}
+  .rank-sea{flex:none;appearance:none;border:1px solid var(--line);background:var(--surface);color:var(--ink-2);
+    font-size:12.5px;font-weight:500;padding:6px 12px;border-radius:999px;cursor:pointer;touch-action:manipulation;display:inline-flex;align-items:center;gap:6px;}
+  .rank-sea.on{border-color:var(--accent);background:var(--accent);color:var(--paper);}
+  .rank-sea .cdot{width:8px;height:8px;border-radius:50%;flex:none;}
+  .rank-scroll{overflow:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:8px;max-height:70vh;}
+  table.rank{border-collapse:separate;border-spacing:0;font-variant-numeric:tabular-nums;}
+  table.rank th,table.rank td{padding:6px 8px;font-size:12px;font-weight:400;white-space:nowrap;border-bottom:1px solid var(--line);vertical-align:middle;}
+  table.rank thead th{position:sticky;top:0;z-index:3;background:var(--paper);vertical-align:bottom;border-bottom:1.5px solid var(--ink);height:64px;}
+  table.rank thead .col-pos,table.rank thead .col-name{vertical-align:bottom;}
+  table.rank .col-pos{position:sticky;left:0;z-index:2;background:var(--paper);width:26px;text-align:center;color:var(--ink-2);font-weight:700;}
+  table.rank .col-name{position:sticky;left:26px;z-index:2;background:var(--paper);text-align:left;font-weight:500;color:var(--ink);max-width:96px;overflow:hidden;text-overflow:ellipsis;}
+  table.rank thead .col-pos,table.rank thead .col-name{z-index:4;}
+  table.rank tbody tr:nth-child(even) td{background:var(--accent-tint);}
+  table.rank tbody tr:nth-child(even) .col-pos,table.rank tbody tr:nth-child(even) .col-name{background:#EFECE4;}
+  .rh{display:flex;flex-direction:column;gap:0;align-items:flex-start;justify-content:flex-end;cursor:pointer;min-width:52px;height:100%;}
+  .rh .rh-d{font-size:10px;color:var(--ink-2);font-weight:500;height:14px;line-height:14px;}
+  .rh .rh-p{font-size:10px;color:var(--ink-3);max-width:76px;overflow:hidden;text-overflow:ellipsis;height:14px;line-height:14px;}
+  .rh .rh-t{font-size:11.5px;color:var(--ink);font-weight:500;max-width:76px;overflow:hidden;text-overflow:ellipsis;height:16px;line-height:16px;}
+  .col-total{background:var(--surface);}
+  table.rank thead .col-total{border-left:1.5px solid var(--ink);}
+  table.rank tbody .col-total{border-left:1.5px solid var(--line);font-weight:700;color:var(--ink);vertical-align:bottom;}
+  table.rank thead th.sorted{background:var(--accent-tint);}
+  table.rank tbody td.sorted{background:var(--accent-tint);}
+  table.rank tbody tr:nth-child(even) td.sorted{background:#E4E7DE;}
+  .cell-pt{color:var(--ink);}
+  .cell-zero{color:var(--ink-3);}
+  .cell-dnf{font-size:9px;color:var(--rose);}
+  .tot-main{font-weight:700;font-size:13px;}
+  .tot-sub{font-size:9.5px;color:var(--ink-2);font-weight:400;}
+  .rank-empty{padding:30px 10px;text-align:center;color:var(--ink-3);font-size:14px;}
+
   /* toast */
   .toast{position:fixed;left:50%;transform:translateX(-50%) translateY(12px);bottom:calc(24px + env(safe-area-inset-bottom));
     background:var(--ink);color:#fff;font-size:13px;font-weight:500;padding:10px 16px;border-radius:999px;
@@ -320,6 +402,7 @@
     </div>
     <div class="top-actions">
       <button class="icon-btn" id="addBtn" aria-label="予定を追加"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+      <button class="icon-btn" id="rankHeaderBtn" aria-label="ランキング"><svg viewBox="0 0 24 24"><path d="M8 21V10M4 21v-5M12 21V3M16 21v-7M20 21V8"/></svg></button>
       <button class="icon-btn dots" id="menuBtn" aria-label="メニュー"><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/><circle cx="19" cy="12" r="1.7"/></svg></button>
     </div>
   </div>
@@ -396,6 +479,7 @@
 
   <button class="btn-primary" id="saveBtn">保存</button>
   <button class="btn-secondary" id="saveAddBtn">保存して続けて追加</button>
+  <button class="btn-secondary" id="recordBtn" style="display:none">🏁 結果を記録</button>
   <button class="btn-text" id="deleteBtn">削除</button>
 </div>
 
@@ -434,6 +518,91 @@
   <button class="btn-primary" id="filterDone">完了</button>
 </div>
 
+<!-- formats list sheet -->
+<div class="panel" id="formatsPanel" role="dialog" aria-label="ポイント表">
+  <div class="handle"></div>
+  <div class="sheet-head">
+    <div class="sheet-title">ポイント表</div>
+    <button class="icon-btn" data-close aria-label="閉じる"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="hint">順位ごとの点数をカンマ区切りで。例：25,18,15,12,10,8,6,4,2,1</div>
+  <div class="labels-list" id="formatsList"></div>
+  <button class="btn-primary" id="addFormatBtn">＋ ポイント表を作成</button>
+  <div class="hint" style="margin-top:14px">プリセットから作成</div>
+  <div class="preset-row" id="presetRow"></div>
+</div>
+
+<!-- format editor sheet -->
+<div class="panel" id="formatEditorPanel" role="dialog" aria-label="ポイント表の編集">
+  <div class="handle"></div>
+  <div class="sheet-head">
+    <div class="sheet-title" id="formatEditorHeading">新しいポイント表</div>
+    <button class="icon-btn" id="formatEditorClose" aria-label="閉じる"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="field"><div class="label">名前</div><input class="input" id="fmtNameInput" type="text" placeholder="例：F1 決勝" autocomplete="off"></div>
+  <div class="field"><div class="label">順位ごとの点数（カンマ区切り）</div><input class="input" id="fmtPointsInput" type="text" placeholder="25,18,15,12,10,8,6,4,2,1" autocomplete="off"></div>
+  <div class="fmt-preview" id="fmtPreview"></div>
+  <div class="field"><div class="label">完走ポイント（周回差ごと・カンマ区切り／任意）</div><input class="input" id="fmtBonusInput" type="text" placeholder="例：3,2,1（同一周回=3, 1周差=2, 2周差以降=1）" autocomplete="off"></div>
+  <div class="fmt-preview" id="bonusPreview"></div>
+  <button class="btn-primary" id="fmtSaveBtn">保存</button>
+  <button class="btn-text" id="fmtDeleteBtn">削除</button>
+</div>
+
+<!-- seasons list sheet -->
+<div class="panel" id="seasonsPanel" role="dialog" aria-label="シーズン">
+  <div class="handle"></div>
+  <div class="sheet-head">
+    <div class="sheet-title">シーズン</div>
+    <button class="icon-btn" data-close aria-label="閉じる"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="labels-list" id="seasonsList"></div>
+  <button class="btn-primary" id="addSeasonBtn">＋ シーズンを作成</button>
+</div>
+
+<!-- season editor sheet -->
+<div class="panel" id="seasonEditorPanel" role="dialog" aria-label="シーズンの編集">
+  <div class="handle"></div>
+  <div class="sheet-head">
+    <div class="sheet-title" id="seasonEditorHeading">新しいシーズン</div>
+    <button class="icon-btn" id="seasonEditorClose" aria-label="閉じる"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="field"><div class="label">ラベル</div><div class="label-picker" id="seasonLabelPicker"></div></div>
+  <div class="field"><div class="label">シーズン名</div><input class="input" id="seasonNameInput" type="text" placeholder="例：2026" autocomplete="off"></div>
+  <div class="field">
+    <div class="label">期間</div>
+    <div class="dt-row"><input class="input" id="seasonFrom" type="date"><input class="input" id="seasonTo" type="date"></div>
+  </div>
+  <div class="field"><div class="label">使うポイント表（複数可）</div><div class="chk-list" id="seasonFormatList"></div></div>
+  <div class="field"><div class="label">エントラント（1行に1つ）</div><textarea class="textarea" id="seasonEntrants" placeholder="フェルスタッペン&#10;ノリス&#10;ルクレール" style="min-height:120px"></textarea></div>
+  <button class="btn-primary" id="seasonSaveBtn">保存</button>
+  <button class="btn-secondary" id="seasonCopyBtn">このシーズンを複製</button>
+  <button class="btn-text" id="seasonDeleteBtn">削除</button>
+</div>
+
+<!-- result recording sheet -->
+<div class="panel" id="resultPanel" role="dialog" aria-label="結果を記録">
+  <div class="handle"></div>
+  <div class="sheet-head">
+    <div class="sheet-title"><span id="resultTitle">結果を記録</span><span class="muted" id="resultDate"></span></div>
+    <button class="icon-btn" id="resultClose" aria-label="閉じる"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="rtabs" id="resultTabs"></div>
+  <div class="rformats" id="resultFormats"></div>
+  <div id="resultBody"></div>
+  <button class="btn-primary" id="resultSaveBtn">保存</button>
+</div>
+
+<!-- ranking sheet -->
+<div class="panel wide" id="rankingPanel" role="dialog" aria-label="ランキング">
+  <div class="handle"></div>
+  <div class="sheet-head">
+    <div class="sheet-title">ランキング</div>
+    <button class="icon-btn" data-close aria-label="閉じる"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="rank-seasons" id="rankSeasonRow"></div>
+  <div class="rank-scroll" id="rankScroll"></div>
+</div>
+
 <!-- menu sheet -->
 <div class="panel" id="menuPanel" role="dialog" aria-label="メニュー">
   <div class="handle"></div>
@@ -455,6 +624,18 @@
   <button class="menu-item" id="manageLabelsBtn">
     <svg viewBox="0 0 24 24"><path d="M20.6 13.4l-7-7A2 2 0 0012 6H5a1 1 0 00-1 1v7a2 2 0 00.6 1.4l7 7a2 2 0 002.8 0l4.2-4.2a2 2 0 000-2.8z"/><circle cx="8.5" cy="10.5" r="1.2" fill="currentColor" stroke="none"/></svg>
     ラベルを管理
+  </button>
+  <button class="menu-item" id="rankingBtn">
+    <svg viewBox="0 0 24 24"><path d="M8 21V9M4 21v-6M12 21V3M16 21v-9M20 21V7"/></svg>
+    ランキング
+  </button>
+  <button class="menu-item" id="manageSeasonsBtn">
+    <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+    シーズンを管理
+  </button>
+  <button class="menu-item" id="manageFormatsBtn">
+    <svg viewBox="0 0 24 24"><path d="M6 4h9l3 3v13H6z"/><path d="M9 12h6M9 16h6M9 8h3"/></svg>
+    ポイント表を管理
   </button>
   <div class="menu-sep"></div>
   <button class="menu-item" id="exportBtn">
@@ -480,13 +661,24 @@
 (function(){
   "use strict";
 
-  var APP_VER='2026-07-11.1';
+  var APP_VER='2026-07-11.14';
   // Monday-first weekday labels
   var WD = ['月','火','水','木','金','土','日'];
   var NONE = '__none';
   var NONE_COLOR = '#B0B5BA';
   var MAX_LANES = 6;
   var COLORS = ['#E63946','#F0720E','#D9A50D','#2A9D5C','#0E7C7B','#2F9EC7','#3557E8','#5F3DC4','#EC4E87','#495057','#8D6E4E'];
+  var PRESETS=[
+    {name:'F1 決勝', points:[25,18,15,12,10,8,6,4,2,1], finishTable:[]},
+    {name:'F1 スプリント', points:[8,7,6,5,4,3,2,1], finishTable:[]},
+    {name:'SUPER GT GT500 決勝', points:[20,15,11,8,6,5,4,3,2,1], finishTable:[3,2,1]},
+    {name:'SUPER GT GT300 決勝', points:[25,20,16,13,11,10,9,8,7,6,5,4,3,2,1], finishTable:[3,3,2,1]},
+    {name:'SUPER GT 予選(ポール)', points:[1], finishTable:[]},
+    {name:'WEC 6時間', points:[25,18,15,12,10,8,6,4,2,1], finishTable:[]},
+    {name:'WEC 8-10時間/1812km', points:[38,27,23,18,15,12,9,6,3,2], finishTable:[]},
+    {name:'WEC ル・マン24時間', points:[50,36,30,24,20,16,12,8,4,2], finishTable:[]},
+    {name:'WEC 予選(ポール)', points:[1], finishTable:[]}
+  ];
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   var $ = function(id){ return document.getElementById(id); };
@@ -505,14 +697,15 @@
   var labelsList=$('labelsList');
   var toastEl=$('toast'), note=$('note'), importInput=$('importInput');
   var filterPanel=$('filterPanel'), filterList=$('filterList'), filterBtn=$('filterBtn');
+  var formatsPanel=$('formatsPanel'), formatEditorPanel=$('formatEditorPanel'), seasonsPanel=$('seasonsPanel'), seasonEditorPanel=$('seasonEditorPanel'), resultPanel=$('resultPanel'), rankingPanel=$('rankingPanel');
 
   // ---------- storage ----------
   var KEY='cal.v2', V1KEY='cal.events.v1';
-  var usingLS=true, memState={events:{},labels:[],theme:'a'}, freshInstall=false;
+  var usingLS=true, memState={events:{},labels:[],formats:[],seasons:[],theme:'a'}, freshInstall=false;
   try{ var t='__t'; localStorage.setItem(t,'1'); localStorage.removeItem(t); }catch(e){ usingLS=false; }
   try{ freshInstall = usingLS ? (localStorage.getItem(KEY)===null) : true; }catch(e){ freshInstall=true; }
 
-  var events={}, labels=[], labelMap={};
+  var events={}, labels=[], labelMap={}, formats=[], seasons=[];
   var theme='a';
   var THEME_PAPER={a:'#F7F4ED',b:'#F1F4F5',c:'#F3F6F0'};
 
@@ -523,16 +716,16 @@
     var raw=null;
     if(usingLS){ try{ raw=localStorage.getItem(KEY); }catch(e){} }
     if(raw){
-      try{ var o=JSON.parse(raw); events=o.events||{}; labels=o.labels||[]; theme=o.theme||'a'; }
-      catch(e){ events={}; labels=[]; theme='a'; }
+      try{ var o=JSON.parse(raw); events=o.events||{}; labels=o.labels||[]; formats=o.formats||[]; seasons=o.seasons||[]; theme=o.theme||'a'; }
+      catch(e){ events={}; labels=[]; formats=[]; seasons=[]; theme='a'; }
     } else if(!usingLS){
-      events=memState.events; labels=memState.labels; theme=memState.theme||'a';
+      events=memState.events; labels=memState.labels; formats=memState.formats||[]; seasons=memState.seasons||[]; theme=memState.theme||'a';
     } else { events={}; labels=[]; }
   }
   function saveAll(){
-    var payload={v:2, events:events, labels:labels, theme:theme};
-    if(usingLS){ try{ localStorage.setItem(KEY, JSON.stringify(payload)); }catch(e){ usingLS=false; memState={events:events,labels:labels,theme:theme}; } }
-    else { memState={events:events,labels:labels,theme:theme}; }
+    var payload={v:2, events:events, labels:labels, formats:formats, seasons:seasons, theme:theme};
+    if(usingLS){ try{ localStorage.setItem(KEY, JSON.stringify(payload)); }catch(e){ usingLS=false; memState={events:events,labels:labels,formats:formats,seasons:seasons,theme:theme}; } }
+    else { memState={events:events,labels:labels,formats:formats,seasons:seasons,theme:theme}; }
   }
 
   function migrateV1(){
@@ -1012,6 +1205,11 @@
       line.appendChild(star);
     }
     main.appendChild(line);
+    if(ev.results && Object.keys(ev.results).length){
+      var tp=document.createElement('span'); tp.className='ev-star'; tp.style.color='var(--ink-3)';
+      tp.innerHTML='<svg viewBox="0 0 24 24" style="fill:none;stroke:currentColor;stroke-width:1.8"><path d="M7 4h10v3a5 5 0 0 1-10 0zM7 6H4v1a3 3 0 0 0 3 3M17 6h3v1a3 3 0 0 1-3 3M9 15h6M12 12v3M8 20h8"/></svg>';
+      line.appendChild(tp);
+    }
     row.appendChild(main);
     row.addEventListener('click',function(){ openForm(o.startKey, ev); });
     return row;
@@ -1156,6 +1354,7 @@
     refreshLabelPicker();
     deleteBtn.style.display= ev?'':'none';
     saveAddBtn.style.display= ev?'none':'';
+    $('recordBtn').style.display = (ev && evHasSeason(ev, dateKey)) ? '' : 'none';
     showSheet('form');
   }
 
@@ -1283,6 +1482,581 @@
     });
   }
 
+  // ---------- formats ----------
+  function fmtById(id){ for(var i=0;i<formats.length;i++){ if(formats[i].id===id) return formats[i]; } return null; }
+  function parsePoints(str){
+    return String(str).split(',').map(function(x){ return parseFloat(x.trim()); }).filter(function(x){ return !isNaN(x); });
+  }
+  function renderFormatsList(){
+    var host=$('formatsList'); host.innerHTML='';
+    if(!formats.length){ var e=document.createElement('div'); e.className='labels-empty'; e.textContent='ポイント表がありません'; host.appendChild(e); }
+    formats.forEach(function(f){
+      var row=document.createElement('button'); row.type='button'; row.className='label-row';
+      var wrap=document.createElement('span'); wrap.style.flex='1'; wrap.style.minWidth='0';
+      var nm=document.createElement('span'); nm.className='lname'; nm.textContent=f.name; nm.style.display='block';
+      var sub=document.createElement('span'); sub.className='row-sub';
+      var ft=(f.finishTable&&f.finishTable.length)?f.finishTable:(f.finishBonus?[f.finishBonus]:[]);
+      sub.textContent=f.points.join(',')+(ft.length?(' ／完走'+ft.join(',')):'');
+      wrap.appendChild(nm); wrap.appendChild(sub);
+      var chev=document.createElement('span'); chev.className='chev'; chev.innerHTML='<svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>';
+      row.appendChild(wrap); row.appendChild(chev);
+      row.addEventListener('click',function(){ openFormatEditor(f); });
+      host.appendChild(row);
+    });
+  }
+  function renderPresetRow(){
+    var host=$('presetRow'); host.innerHTML='';
+    PRESETS.forEach(function(pre){
+      var b=document.createElement('button'); b.type='button'; b.className='preset-chip'; b.textContent=pre.name;
+      b.addEventListener('click',function(){
+        formats.push({id:genId(), name:pre.name, points:pre.points.slice(), finishTable:(pre.finishTable||[]).slice()});
+        saveAll(); renderFormatsList(); toast('「'+pre.name+'」を追加しました');
+      });
+      host.appendChild(b);
+    });
+  }
+  var editingFormat=null;
+  function fmtPreview(){
+    var pts=parsePoints($('fmtPointsInput').value);
+    var el=$('fmtPreview');
+    if(!pts.length){ el.textContent=''; } else {
+      var parts=[]; for(var i=0;i<pts.length && i<6;i++){ parts.push((i+1)+'位'+pts[i]+'pt'); }
+      el.textContent=parts.join('・')+(pts.length>6?(' …計'+pts.length+'位まで'):'');
+    }
+    var bel=$('bonusPreview');
+    var bt=parsePoints($('fmtBonusInput').value);
+    if(!bt.length){ bel.textContent=''; }
+    else {
+      var bp=[]; for(var j=0;j<bt.length;j++){ bp.push(j+'周差'+(j===bt.length-1?'以降':'')+'+'+bt[j]); }
+      bel.textContent='完走: '+bp.join('・');
+    }
+  }
+  function openFormatEditor(f){
+    editingFormat = f?{id:f.id}:{id:null};
+    $('formatEditorHeading').textContent = f?'ポイント表を編集':'新しいポイント表';
+    $('fmtNameInput').value = f?f.name:'';
+    $('fmtPointsInput').value = f?f.points.join(','):'';
+    $('fmtBonusInput').value = (f && f.finishTable && f.finishTable.length)?f.finishTable.join(','):'';
+    $('fmtDeleteBtn').style.display = f?'':'none';
+    fmtPreview();
+    showSheet('formatEditor');
+  }
+  function saveFormat(){
+    var name=$('fmtNameInput').value.trim();
+    if(!name){ $('fmtNameInput').classList.add('err'); $('fmtNameInput').focus(); return; }
+    var pts=parsePoints($('fmtPointsInput').value);
+    if(!pts.length){ $('fmtPointsInput').classList.add('err'); $('fmtPointsInput').focus(); toast('点数を入力してください'); return; }
+    var ftable=parsePoints($('fmtBonusInput').value);
+    if(editingFormat.id){
+      var f=fmtById(editingFormat.id); if(f){ f.name=name; f.points=pts; f.finishTable=ftable; delete f.finishBonus; }
+    } else {
+      formats.push({id:genId(), name:name, points:pts, finishTable:ftable});
+    }
+    saveAll(); showSheet('formats'); renderFormatsList();
+  }
+  function deleteFormat(){
+    if(!editingFormat.id) return;
+    var used=seasons.some(function(se){ return (se.formatIds||[]).indexOf(editingFormat.id)>=0; });
+    var msg=used?'このポイント表はシーズンで使われています。削除しますか？（該当シーズンから外れます）':'このポイント表を削除しますか？';
+    if(!confirm(msg)) return;
+    formats=formats.filter(function(f){ return f.id!==editingFormat.id; });
+    seasons.forEach(function(se){ if(se.formatIds) se.formatIds=se.formatIds.filter(function(id){ return id!==editingFormat.id; }); });
+    saveAll(); showSheet('formats'); renderFormatsList();
+  }
+
+  // ---------- seasons ----------
+  function seasonById(id){ for(var i=0;i<seasons.length;i++){ if(seasons[i].id===id) return seasons[i]; } return null; }
+  function seasonsForLabelDate(labelId, key){
+    return seasons.filter(function(se){
+      return se.labelId===labelId && (!se.from || key>=se.from) && (!se.to || key<=se.to);
+    });
+  }
+  function renderSeasonsList(){
+    var host=$('seasonsList'); host.innerHTML='';
+    if(!seasons.length){ var e=document.createElement('div'); e.className='labels-empty'; e.textContent='シーズンがありません'; host.appendChild(e); }
+    seasons.slice().sort(function(a,b){ return (b.from||'').localeCompare(a.from||''); }).forEach(function(se){
+      var lab=labelMap[se.labelId];
+      var row=document.createElement('button'); row.type='button'; row.className='label-row';
+      if(lab){ var dot=document.createElement('span'); dot.className='cdot'; dot.style.background=lab.color; row.appendChild(dot); }
+      var wrap=document.createElement('span'); wrap.style.flex='1'; wrap.style.minWidth='0';
+      var nm=document.createElement('span'); nm.className='lname'; nm.style.display='block';
+      nm.textContent=(lab?lab.name:'(ラベルなし)')+' — '+(se.name||'');
+      var sub=document.createElement('span'); sub.className='row-sub';
+      sub.textContent=(se.from||'?')+' 〜 '+(se.to||'?')+' ／ '+((se.entrants||[]).length)+'名';
+      wrap.appendChild(nm); wrap.appendChild(sub);
+      var chev=document.createElement('span'); chev.className='chev'; chev.innerHTML='<svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>';
+      row.appendChild(wrap); row.appendChild(chev);
+      row.addEventListener('click',function(){ openSeasonEditor(se); });
+      host.appendChild(row);
+    });
+  }
+  var editingSeason=null, seasonSelLabel=null, seasonSelFormats=[];
+  function renderSeasonLabelPicker(){
+    var host=$('seasonLabelPicker'); host.innerHTML='';
+    labels.forEach(function(l){
+      var b=document.createElement('button'); b.type='button'; b.className='chip'+(seasonSelLabel===l.id?' on':'');
+      var dot=document.createElement('span'); dot.className='cdot'; dot.style.background=l.color; b.appendChild(dot);
+      var tx=document.createElement('span'); tx.textContent=l.name; b.appendChild(tx);
+      b.addEventListener('click',function(){ seasonSelLabel=l.id; renderSeasonLabelPicker(); });
+      host.appendChild(b);
+    });
+  }
+  function renderSeasonFormatList(){
+    var host=$('seasonFormatList'); host.innerHTML='';
+    if(!formats.length){ var e=document.createElement('div'); e.className='labels-empty'; e.textContent='先にポイント表を作成してください'; host.appendChild(e); return; }
+    formats.forEach(function(f){
+      var on=seasonSelFormats.indexOf(f.id)>=0;
+      var row=document.createElement('button'); row.type='button'; row.className='chk-row'+(on?' on':'');
+      var box=document.createElement('span'); box.className='chk-box'; box.innerHTML='<svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>';
+      var nm=document.createElement('span'); nm.className='cname'; nm.textContent=f.name;
+      row.appendChild(box); row.appendChild(nm);
+      row.addEventListener('click',function(){
+        var i=seasonSelFormats.indexOf(f.id);
+        if(i>=0) seasonSelFormats.splice(i,1); else seasonSelFormats.push(f.id);
+        renderSeasonFormatList();
+      });
+      host.appendChild(row);
+    });
+  }
+  function openSeasonEditor(se){
+    editingSeason = se?{id:se.id}:{id:null};
+    seasonSelLabel = se?se.labelId:(labels[0]?labels[0].id:null);
+    seasonSelFormats = se?(se.formatIds||[]).slice():[];
+    $('seasonEditorHeading').textContent = se?'シーズンを編集':'新しいシーズン';
+    $('seasonNameInput').value = se?(se.name||''):'';
+    $('seasonFrom').value = se?(se.from||''):'';
+    $('seasonTo').value = se?(se.to||''):'';
+    $('seasonEntrants').value = se?((se.entrants||[]).map(function(en){ return en.name; }).join('\n')):'';
+    $('seasonDeleteBtn').style.display = se?'':'none';
+    $('seasonCopyBtn').style.display = se?'':'none';
+    renderSeasonLabelPicker(); renderSeasonFormatList();
+    showSheet('seasonEditor');
+  }
+  function collectSeasonEntrants(existing){
+    var prev={}; if(existing){ (existing.entrants||[]).forEach(function(en){ prev[en.name]=en.id; }); }
+    var lines=$('seasonEntrants').value.split('\n').map(function(x){ return x.trim(); }).filter(function(x){ return x; });
+    var seen={}, out=[];
+    lines.forEach(function(nm){ if(seen[nm]) return; seen[nm]=1; out.push({id: prev[nm]||genId(), name:nm}); });
+    return out;
+  }
+  function saveSeason(){
+    if(!seasonSelLabel){ toast('ラベルを選んでください'); return; }
+    var name=$('seasonNameInput').value.trim();
+    if(!name){ $('seasonNameInput').classList.add('err'); $('seasonNameInput').focus(); return; }
+    var from=$('seasonFrom').value, to=$('seasonTo').value;
+    if(from&&to&&from>to){ toast('期間の開始と終了が逆です'); return; }
+    var cur=editingSeason.id?seasonById(editingSeason.id):null;
+    var ents=collectSeasonEntrants(cur);
+    if(cur){
+      cur.labelId=seasonSelLabel; cur.name=name; cur.from=from; cur.to=to; cur.formatIds=seasonSelFormats.slice(); cur.entrants=ents;
+    } else {
+      seasons.push({id:genId(), labelId:seasonSelLabel, name:name, from:from, to:to, formatIds:seasonSelFormats.slice(), entrants:ents});
+    }
+    saveAll(); showSheet('seasons'); renderSeasonsList();
+  }
+  function copySeason(){
+    if(!editingSeason.id) return;
+    var cur=seasonById(editingSeason.id); if(!cur) return;
+    var ents=collectSeasonEntrants(cur).map(function(en){ return {id:genId(), name:en.name}; });
+    var ns={id:genId(), labelId:seasonSelLabel, name:$('seasonNameInput').value.trim()+' コピー', from:'', to:'', formatIds:seasonSelFormats.slice(), entrants:ents};
+    seasons.push(ns); saveAll();
+    openSeasonEditor(ns); toast('複製しました。期間を入力してください');
+  }
+  function deleteSeason(){
+    if(!editingSeason.id) return;
+    if(!confirm('このシーズンを削除しますか？記録済みの結果も表示されなくなります。')) return;
+    seasons=seasons.filter(function(se){ return se.id!==editingSeason.id; });
+    saveAll(); showSheet('seasons'); renderSeasonsList();
+  }
+
+  // ---------- result recording ----------
+  // 記録データ構造: ev.results = { seasonId: { rounds: [ {formatId, half, order:[eid...], gaps:{eid:周回差}, dnf:{eid:true}} ] } }
+  var recEv=null, recKey=null, recSeasons=[], recSeasonIdx=0, recDraft={};
+
+  function finTable(fmt){ return (fmt.finishTable&&fmt.finishTable.length)?fmt.finishTable:(fmt.finishBonus?[fmt.finishBonus]:[]); }
+  function finishPts(fmt, gap){
+    var t=finTable(fmt); if(!t.length) return 0;
+    var g=(gap==null||gap<0)?0:gap;
+    return g<t.length ? t[g] : t[t.length-1];
+  }
+  function pointsFor(round, fmt){
+    // 返す: { entrantId: pts }。DNFはそのラウンドのポイントを全て0にする
+    var res={}, half=round.half, gaps=round.gaps||{}, dnf=round.dnf||{};
+    (round.order||[]).forEach(function(eid, i){
+      if(dnf[eid]){ res[eid]=0; return; }
+      var base = i<fmt.points.length ? fmt.points[i] : 0;
+      if(half) base = base/2;
+      var fin = finishPts(fmt, gaps[eid]);
+      res[eid] = base + fin;
+    });
+    return res;
+  }
+  function fmtNum(n){ return (Math.round(n*10)/10).toString(); }
+
+  function openResult(ev, key){
+    recEv=ev; recKey=key;
+    var lid=ev.labelId;
+    recSeasons = lid ? seasonsForLabelDate(lid, key) : [];
+    if(!recSeasons.length){
+      var lab=lid?labelMap[lid]:null;
+      if(confirm((lab?lab.name:'このラベル')+' に、この日付を含むシーズンがありません。シーズンを作成しますか？')){
+        closeSheet(); openSeasonEditor(null);
+        if(lid){ seasonSelLabel=lid; renderSeasonLabelPicker(); }
+        $('seasonFrom').value=key;
+      }
+      return;
+    }
+    // draft を既存結果から復元（ディープコピー）
+    recDraft={};
+    var saved=(ev.results)||{};
+    recSeasons.forEach(function(se){
+      var sd=saved[se.id];
+      var rounds=[];
+      (se.formatIds||[]).forEach(function(fid){
+        var found= sd && sd.rounds ? sd.rounds.filter(function(r){ return r.formatId===fid; })[0] : null;
+        rounds.push({ formatId:fid, half: found?!!found.half:false,
+          order: found?found.order.slice():[],
+          gaps: found?Object.assign({},found.gaps||{}):{},
+          dnf: found?Object.assign({},found.dnf||{}):{} });
+      });
+      recDraft[se.id]={rounds:rounds};
+    });
+    recSeasonIdx=0;
+    $('resultTitle').textContent='結果を記録';
+    var p=parseKey(key);
+    $('resultDate').textContent=(p.m+1)+'/'+p.d+'　'+(ev.title||'');
+    renderResult();
+    showSheet('result');
+  }
+
+  var recFmtIdx=0;
+  function renderResult(){
+    // タブ（シーズン）
+    var tabs=$('resultTabs'); tabs.innerHTML='';
+    if(recSeasons.length>1){
+      recSeasons.forEach(function(se,i){
+        var lab=labelMap[se.labelId];
+        var b=document.createElement('button'); b.type='button'; b.className='rtab'+(i===recSeasonIdx?' on':'');
+        b.textContent=(lab?lab.name:'')+' '+se.name;
+        b.addEventListener('click',function(){ recSeasonIdx=i; recFmtIdx=0; renderResult(); });
+        tabs.appendChild(b);
+      });
+    }
+    var se=recSeasons[recSeasonIdx];
+    var draft=recDraft[se.id];
+
+    // フォーマット選択（区分）
+    var fr=$('resultFormats'); fr.innerHTML='';
+    if(!draft.rounds.length){
+      fr.innerHTML='<div class="pool-empty">このシーズンにポイント表が設定されていません</div>';
+      $('resultBody').innerHTML=''; return;
+    }
+    if(recFmtIdx>=draft.rounds.length) recFmtIdx=0;
+    draft.rounds.forEach(function(r,i){
+      var f=fmtById(r.formatId); if(!f) return;
+      var b=document.createElement('button'); b.type='button'; b.className='rfmt'+(i===recFmtIdx?' on':'');
+      var cnt=r.order.length? (' ('+r.order.length+')') : '';
+      b.textContent=f.name+cnt;
+      b.addEventListener('click',function(){ recFmtIdx=i; renderResult(); });
+      fr.appendChild(b);
+    });
+
+    var round=draft.rounds[recFmtIdx];
+    var fmt=fmtById(round.formatId);
+    var body=$('resultBody'); body.innerHTML='';
+    if(!fmt){ return; }
+    round.gaps=round.gaps||{}; round.dnf=round.dnf||{};
+    var hasFin=finTable(fmt).length>0;
+
+    // ハーフトグル
+    var hr=document.createElement('div'); hr.className='half-row';
+    hr.innerHTML='<span class="t">ハーフポイント（点数を半分）</span>';
+    var sw=document.createElement('label'); sw.className='switch';
+    sw.innerHTML='<input type="checkbox"'+(round.half?' checked':'')+'><span class="track"></span><span class="thumb"></span>';
+    sw.querySelector('input').addEventListener('change',function(){ round.half=this.checked; renderResult(); });
+    hr.appendChild(sw); body.appendChild(hr);
+
+    // 着順リスト
+    var pts=pointsFor(round, fmt);
+    var ol=document.createElement('div'); ol.className='order-list';
+    round.order.forEach(function(eid, i){
+      var en=(se.entrants||[]).filter(function(e){ return e.id===eid; })[0];
+      var isDnf=!!round.dnf[eid];
+      var item=document.createElement('div'); item.className='order-item';
+
+      var pos=document.createElement('span'); pos.className='order-pos'; pos.textContent=(i+1);
+      var nm=document.createElement('span'); nm.className='order-name'; nm.textContent=en?en.name:'(削除)';
+
+      // 周回差セレクト（完走テーブルありのときだけ、非DNF時）
+      if(hasFin && !isDnf){
+        var gsel=document.createElement('select'); gsel.className='gap-sel';
+        var tlen=finTable(fmt).length;
+        for(var g=0; g<Math.max(tlen,1)+1; g++){
+          var op=document.createElement('option'); op.value=g;
+          op.textContent=(g===0?'同一周':(g+'周差'))+((g===tlen && tlen>0)?'+':'');
+          if((round.gaps[eid]||0)===g) op.selected=true;
+          gsel.appendChild(op);
+        }
+        gsel.addEventListener('change',function(idx){ return function(){
+          var val=parseInt(this.value,10);
+          round.gaps[round.order[idx]]=val;
+          // 下位は上位の周回差を下回れない → idxより下でval未満の行をvalへ引き上げ
+          for(var k=idx+1;k<round.order.length;k++){
+            var did=round.order[k];
+            if(round.dnf[did]) continue;
+            if((round.gaps[did]||0) < val) round.gaps[did]=val;
+          }
+          renderResult();
+        }; }(i));
+        item.appendChild(pos); item.appendChild(nm); item.appendChild(gsel);
+      } else {
+        item.appendChild(pos); item.appendChild(nm);
+      }
+
+      var pt=document.createElement('span'); pt.className='order-pts'; pt.textContent=(isDnf?'DNF ':'')+fmtNum(pts[eid]||0)+'pt';
+      item.appendChild(pt);
+
+      // DNFトグル
+      var dnfBtn=document.createElement('button'); dnfBtn.type='button'; dnfBtn.className='dnf-btn'+(isDnf?' on':'');
+      dnfBtn.textContent='DNF';
+      dnfBtn.addEventListener('click',function(eid){ return function(){ if(round.dnf[eid]) delete round.dnf[eid]; else round.dnf[eid]=true; renderResult(); }; }(eid));
+      item.appendChild(dnfBtn);
+
+      var x=document.createElement('button'); x.type='button'; x.className='order-x';
+      x.innerHTML='<svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+      x.addEventListener('click',function(eid,i){ return function(){ round.order.splice(i,1); delete round.gaps[eid]; delete round.dnf[eid]; renderResult(); }; }(eid,i));
+      item.appendChild(x);
+
+      ol.appendChild(item);
+    });
+    if(round.order.length) body.appendChild(ol);
+
+    if(hasFin){
+      var fn=document.createElement('div'); fn.className='fin-note';
+      fn.textContent='完走: '+finTable(fmt).map(function(v,i){ return (i)+'周差'+(i===finTable(fmt).length-1?'以降':'')+'+'+v; }).join('・')+'。DNFは完走ポイントなし。';
+      body.appendChild(fn);
+    }
+
+    // プール
+    var lbl=document.createElement('div'); lbl.className='rsec-label';
+    lbl.textContent='タップして着順に追加（上位から順に）';
+    body.appendChild(lbl);
+    var pool=document.createElement('div'); pool.className='pool';
+    var remaining=(se.entrants||[]).filter(function(e){ return round.order.indexOf(e.id)<0; });
+    if(!remaining.length){ pool.innerHTML='<div class="pool-empty">全エントラントを追加済み</div>'; }
+    remaining.forEach(function(en){
+      var c=document.createElement('button'); c.type='button'; c.className='pool-chip'; c.textContent=en.name;
+      c.addEventListener('click',function(){
+        var mx=0;
+        round.order.forEach(function(oid){ if(!round.dnf[oid] && (round.gaps[oid]||0)>mx) mx=round.gaps[oid]||0; });
+        round.gaps[en.id]=mx;
+        round.order.push(en.id);
+        renderResult();
+      });
+      pool.appendChild(c);
+    });
+    body.appendChild(pool);
+  }
+
+  function saveResult(){
+    var ev=recEv;
+    if(!ev.results) ev.results={};
+    recSeasons.forEach(function(se){
+      var draft=recDraft[se.id];
+      var rounds=draft.rounds.filter(function(r){ return r.order.length>0; })
+        .map(function(r){
+          var g={},dn={};
+          r.order.forEach(function(eid){ if(r.gaps&&r.gaps[eid]) g[eid]=r.gaps[eid]; if(r.dnf&&r.dnf[eid]) dn[eid]=true; });
+          return {formatId:r.formatId, half:!!r.half, order:r.order.slice(), gaps:g, dnf:dn};
+        });
+      if(rounds.length){ ev.results[se.id]={rounds:rounds}; }
+      else if(ev.results[se.id]){ delete ev.results[se.id]; }
+    });
+    if(!Object.keys(ev.results).length) delete ev.results;
+    saveAll();
+    closeSheet();
+    renderCurrentView();
+    toast('結果を記録しました');
+  }
+
+  // ある予定が「結果記録の対象か」（シーズン該当あり）
+  function evHasSeason(ev, key){ return ev.labelId && seasonsForLabelDate(ev.labelId, key).length>0; }
+
+  // ---------- ranking ----------
+  var rankSeasonId=null, rankSortCol='total', rankSortDir='desc';
+
+  function gatherSeasonRounds(se){
+    // シーズン期間内で、そのシーズンに結果があるラウンドを予定順・フォーマット順に列化
+    var cols=[]; // {key, ev, formatId, fmt, order, gaps, dnf, half}
+    var keys=Object.keys(events).filter(function(k){
+      return (!se.from || k>=se.from) && (!se.to || k<=se.to);
+    }).sort();
+    keys.forEach(function(k){
+      events[k].forEach(function(ev){
+        if(ev.labelId!==se.labelId) return;
+        var sd = ev.results && ev.results[se.id];
+        if(!sd || !sd.rounds) return;
+        // シーズンのformatId順に安定化
+        (se.formatIds||[]).forEach(function(fid){
+          sd.rounds.filter(function(r){ return r.formatId===fid; }).forEach(function(r){
+            var fmt=fmtById(fid); if(!fmt) return;
+            cols.push({key:k, ev:ev, formatId:fid, fmt:fmt, order:r.order||[], gaps:r.gaps||{}, dnf:r.dnf||{}, half:!!r.half});
+          });
+        });
+      });
+    });
+    return cols;
+  }
+
+  function renderRankSeasonRow(){
+    var host=$('rankSeasonRow'); host.innerHTML='';
+    if(!seasons.length){ return; }
+    seasons.slice().reverse().forEach(function(se){
+      var lab=labelMap[se.labelId];
+      var b=document.createElement('button'); b.type='button'; b.className='rank-sea'+(se.id===rankSeasonId?' on':'');
+      if(lab){ var dot=document.createElement('span'); dot.className='cdot'; dot.style.background=lab.color; b.appendChild(dot); }
+      var tx=document.createElement('span'); tx.textContent=(lab?lab.name:'')+' '+se.name; b.appendChild(tx);
+      b.addEventListener('click',function(){ rankSeasonId=se.id; rankSortCol='total'; rankSortDir='desc'; renderRanking(); });
+      host.appendChild(b);
+    });
+  }
+
+  function renderRanking(){
+    renderRankSeasonRow();
+    var host=$('rankScroll'); host.innerHTML='';
+    var se=seasonById(rankSeasonId);
+    if(!se){ host.innerHTML='<div class="rank-empty">シーズンを選んでください</div>'; return; }
+    var ents=se.entrants||[];
+    if(!ents.length){ host.innerHTML='<div class="rank-empty">エントラントが登録されていません</div>'; return; }
+    var cols=gatherSeasonRounds(se);
+
+    // 各列のポイント & 各列内順位（ソート用）
+    var colPts=cols.map(function(c){ return pointsFor(c, c.fmt); });
+    var colRank=cols.map(function(c,ci){
+      // その列の order 位置＝順位。orderに無い=未出走(null)
+      var rk={};
+      c.order.forEach(function(eid,i){ rk[eid]=i+1; });
+      return rk;
+    });
+
+    // 合計と内訳
+    var totals={};
+    ents.forEach(function(e){ totals[e.id]={pt:0, fin:0, base:0, dnf:0, starts:0}; });
+    cols.forEach(function(c,ci){
+      var pts=colPts[ci];
+      c.order.forEach(function(eid){
+        if(!totals[eid]) return;
+        totals[eid].starts+=1;
+        if(c.dnf[eid]){ totals[eid].dnf+=1; return; } // DNFはポイント加算なし
+        var i=c.order.indexOf(eid);
+        var base=i<c.fmt.points.length?c.fmt.points[i]:0; if(c.half) base=base/2;
+        var fin=finishPts(c.fmt, c.gaps[eid]);
+        totals[eid].base+=base;
+        totals[eid].fin+=fin;
+        totals[eid].pt+=(pts[eid]||0);
+      });
+    });
+
+    // 並べ替え
+    var rowsE=ents.slice();
+    rowsE.sort(function(a,b){
+      if(rankSortCol==='total'){
+        var d=totals[b.id].pt-totals[a.id].pt;
+        return rankSortDir==='desc'? d : -d;
+      } else {
+        var ci=rankSortCol;
+        var ra=colRank[ci][a.id]||9999, rb=colRank[ci][b.id]||9999;
+        return rankSortDir==='desc'? (ra-rb) : (rb-ra);
+        // desc=1位が上（昇順の着順）。もう一度押すと反転
+      }
+    });
+    // 総合順位（常に合計ベースの順位を左に出す）
+    var byTotal=ents.slice().sort(function(a,b){ return totals[b.id].pt-totals[a.id].pt; });
+    var posOf={}; byTotal.forEach(function(e,i){ posOf[e.id]=i+1; });
+
+    // テーブル構築
+    var tbl=document.createElement('table'); tbl.className='rank';
+    var thead=document.createElement('thead'); var htr=document.createElement('tr');
+    htr.innerHTML='<th class="col-pos">#</th><th class="col-name">名前</th>';
+    cols.forEach(function(c,ci){
+      var th=document.createElement('th');
+      var p=parseKey(c.key);
+      var div=document.createElement('div'); div.className='rh';
+      div.innerHTML='<span class="rh-d">'+(p.m+1)+'/'+p.d+'</span>'+
+        '<span class="rh-p">'+(c.ev.place?escapeHtml(c.ev.place):'')+'</span>'+
+        '<span class="rh-t">'+escapeHtml(c.ev.title||'')+'</span>';
+      div.addEventListener('click',function(){
+        if(rankSortCol===ci){ rankSortDir=(rankSortDir==='desc'?'asc':'desc'); }
+        else { rankSortCol=ci; rankSortDir='desc'; }
+        renderRanking();
+      });
+      if(rankSortCol===ci) th.className='sorted';
+      th.appendChild(div); htr.appendChild(th);
+    });
+    var tot=document.createElement('th'); tot.className='col-total'+(rankSortCol==='total'?' sorted':'');
+    var totDiv=document.createElement('div'); totDiv.className='rh'; totDiv.style.minWidth='44px';
+    totDiv.innerHTML='<span class="rh-t">合計</span>';
+    totDiv.addEventListener('click',function(){
+      if(rankSortCol==='total'){ rankSortDir=(rankSortDir==='desc'?'asc':'desc'); }
+      else { rankSortCol='total'; rankSortDir='desc'; }
+      renderRanking();
+    });
+    tot.appendChild(totDiv); htr.appendChild(tot);
+    thead.appendChild(htr); tbl.appendChild(thead);
+
+    var tb=document.createElement('tbody');
+    rowsE.forEach(function(e){
+      var tr=document.createElement('tr');
+      var td0=document.createElement('td'); td0.className='col-pos'; td0.textContent=posOf[e.id]; tr.appendChild(td0);
+      var td1=document.createElement('td'); td1.className='col-name'; td1.textContent=e.name; tr.appendChild(td1);
+      cols.forEach(function(c,ci){
+        var td=document.createElement('td');
+        if(rankSortCol===ci) td.className='sorted';
+        if(c.order.indexOf(e.id)>=0){
+          if(c.dnf[e.id]){
+            td.innerHTML='<span class="cell-dnf">DNF</span>';
+          } else {
+            var i=c.order.indexOf(e.id);
+            var base=i<c.fmt.points.length?c.fmt.points[i]:0; if(c.half) base=base/2;
+            var fin=finishPts(c.fmt, c.gaps[e.id]);
+            var txt = fin ? (fmtNum(base)+'+'+fmtNum(fin)) : fmtNum(base);
+            var zero = (base+fin)===0;
+            td.innerHTML='<span class="'+(zero?'cell-zero':'cell-pt')+'">'+txt+'</span>';
+          }
+        } else {
+          td.innerHTML='<span class="cell-zero">–</span>';
+        }
+        tr.appendChild(td);
+      });
+      var t=totals[e.id];
+      var tdT=document.createElement('td'); tdT.className='col-total'+(rankSortCol==='total'?' sorted':'');
+      var main = t.fin ? (fmtNum(t.base)+'+'+fmtNum(t.fin)) : fmtNum(t.base);
+      var line2 = t.dnf ? ('DNF('+t.dnf+')') : '';
+      tdT.innerHTML='<div class="tot-main">'+main+'</div>'+(line2?('<div class="tot-sub">'+line2+'</div>'):'');
+      tr.appendChild(tdT);
+      tb.appendChild(tr);
+    });
+    tbl.appendChild(tb);
+
+    if(!cols.length){
+      host.innerHTML='<div class="rank-empty">まだ結果が記録されていません</div>';
+      return;
+    }
+    host.appendChild(tbl);
+    // 右端（合計＋直近ラウンド）を初期表示に
+    requestAnimationFrame(function(){ host.scrollLeft = host.scrollWidth; });
+  }
+  function escapeHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+  function openRanking(){
+    if(!rankSeasonId || !seasonById(rankSeasonId)){
+      rankSeasonId = seasons.length?seasons[seasons.length-1].id:null;
+    }
+    rankSortCol='total'; rankSortDir='desc';
+    renderRanking();
+    showSheet('ranking');
+  }
+
   // ---------- sheets ----------
   function showSheet(name){
     backdrop.classList.add('show');
@@ -1291,12 +2065,18 @@
     labelEditorPanel.classList.toggle('open', name==='labelEditor');
     labelsPanel.classList.toggle('open', name==='labels');
     filterPanel.classList.toggle('open', name==='filter');
+    formatsPanel.classList.toggle('open', name==='formats');
+    formatEditorPanel.classList.toggle('open', name==='formatEditor');
+    seasonsPanel.classList.toggle('open', name==='seasons');
+    seasonEditorPanel.classList.toggle('open', name==='seasonEditor');
+    resultPanel.classList.toggle('open', name==='result');
+    rankingPanel.classList.toggle('open', name==='ranking');
     menuPanel.classList.toggle('open', name==='menu');
   }
   function closeSheet(){
     backdrop.classList.remove('show');
     document.body.classList.remove('locked');
-    [formPanel,labelEditorPanel,labelsPanel,filterPanel,menuPanel].forEach(function(p){ p.classList.remove('open'); });
+    [formPanel,labelEditorPanel,labelsPanel,filterPanel,formatsPanel,formatEditorPanel,seasonsPanel,seasonEditorPanel,resultPanel,rankingPanel,menuPanel].forEach(function(p){ p.classList.remove('open'); });
   }
 
   // ---------- theme ----------
@@ -1315,7 +2095,7 @@
 
   // ---------- backup ----------
   function exportData(){
-    var data=JSON.stringify({v:2,exportedAt:new Date().toISOString(),events:events,labels:labels,theme:theme},null,2);
+    var data=JSON.stringify({v:2,exportedAt:new Date().toISOString(),events:events,labels:labels,formats:formats,seasons:seasons,theme:theme},null,2);
     var blob=new Blob([data],{type:'application/json'}); var url=URL.createObjectURL(blob);
     var a=document.createElement('a'); var t=new Date();
     a.href=url; a.download='calendar-backup-'+t.getFullYear()+pad(t.getMonth()+1)+pad(t.getDate())+'.json';
@@ -1330,6 +2110,7 @@
         var inLabels = o.labels || [];
         if(!inEvents || typeof inEvents!=='object' || Array.isArray(inEvents)) throw new Error('bad');
         events=inEvents; labels=Array.isArray(inLabels)?inLabels:[];
+        formats=Array.isArray(o.formats)?o.formats:[]; seasons=Array.isArray(o.seasons)?o.seasons:[];
         if(o.theme==='a'||o.theme==='b'||o.theme==='c'){ theme=o.theme; applyTheme(); }
         reindex(); saveAll(); renderCurrentView(); closeSheet(); toast('読み込みました');
       }catch(err){ toast('ファイルを読み込めませんでした'); }
@@ -1398,6 +2179,32 @@
   });
 
   $('manageLabelsBtn').addEventListener('click',function(){ renderLabelsList(); showSheet('labels'); });
+  $('manageFormatsBtn').addEventListener('click',function(){ renderFormatsList(); renderPresetRow(); showSheet('formats'); });
+  $('addFormatBtn').addEventListener('click',function(){ openFormatEditor(null); });
+  $('formatEditorClose').addEventListener('click',function(){ showSheet('formats'); renderFormatsList(); });
+  $('fmtSaveBtn').addEventListener('click',saveFormat);
+  $('fmtDeleteBtn').addEventListener('click',deleteFormat);
+  $('fmtNameInput').addEventListener('input',function(){ this.classList.remove('err'); });
+  $('fmtPointsInput').addEventListener('input',function(){ this.classList.remove('err'); fmtPreview(); });
+  $('fmtBonusInput').addEventListener('input',fmtPreview);
+  $('manageSeasonsBtn').addEventListener('click',function(){ if(!labels.length){ toast('先にラベルを作成してください'); return; } renderSeasonsList(); showSheet('seasons'); });
+  $('addSeasonBtn').addEventListener('click',function(){ if(!labels.length){ toast('先にラベルを作成してください'); return; } openSeasonEditor(null); });
+  $('seasonEditorClose').addEventListener('click',function(){ showSheet('seasons'); renderSeasonsList(); });
+  $('seasonSaveBtn').addEventListener('click',saveSeason);
+  $('seasonCopyBtn').addEventListener('click',copySeason);
+  $('seasonDeleteBtn').addEventListener('click',deleteSeason);
+  function openRankingGuarded(){ if(!seasons.length){ toast('先にシーズンを作成してください'); return; } openRanking(); }
+  $('rankingBtn').addEventListener('click',openRankingGuarded);
+  $('rankHeaderBtn').addEventListener('click',openRankingGuarded);
+  $('resultClose').addEventListener('click',closeSheet);
+  $('resultSaveBtn').addEventListener('click',saveResult);
+  $('recordBtn').addEventListener('click',function(){
+    if(!editing) return;
+    var arr=events[editing.key]||[];
+    var ev=arr.filter(function(e){ return e.id===editing.id; })[0];
+    if(ev) openResult(ev, editing.key);
+  });
+  $('seasonNameInput').addEventListener('input',function(){ this.classList.remove('err'); });
   $('addLabelBtn').addEventListener('click',function(){ openLabelEditor(null,'labels'); });
 
   $('reloadBtn').addEventListener('click',function(){ location.replace(location.pathname + '?v=' + Date.now()); });
