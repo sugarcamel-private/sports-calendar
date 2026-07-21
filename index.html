@@ -573,6 +573,7 @@
     <div class="dt-row"><input class="input" id="seasonFrom" type="date"><input class="input" id="seasonTo" type="date"></div>
   </div>
   <div class="field"><div class="label">使うポイント表（複数可）</div><div class="chk-list" id="seasonFormatList"></div></div>
+  <div class="switch-row"><span class="t">ハーフポイントを使う</span><label class="switch"><input type="checkbox" id="seasonHalf"><span class="track"></span><span class="thumb"></span></label></div>
   <div class="field"><div class="label">エントラント（1行に1つ）</div><textarea class="textarea" id="seasonEntrants" placeholder="フェルスタッペン&#10;ノリス&#10;ルクレール" style="min-height:120px"></textarea></div>
   <button class="btn-primary" id="seasonSaveBtn">保存</button>
   <button class="btn-secondary" id="seasonCopyBtn">このシーズンを複製</button>
@@ -661,7 +662,7 @@
 (function(){
   "use strict";
 
-  var APP_VER='2026-07-11.14';
+  var APP_VER='2026-07-11.15';
   // Monday-first weekday labels
   var WD = ['月','火','水','木','金','土','日'];
   var NONE = '__none';
@@ -1627,6 +1628,7 @@
     $('seasonFrom').value = se?(se.from||''):'';
     $('seasonTo').value = se?(se.to||''):'';
     $('seasonEntrants').value = se?((se.entrants||[]).map(function(en){ return en.name; }).join('\n')):'';
+    $('seasonHalf').checked = se?!!se.useHalf:false;
     $('seasonDeleteBtn').style.display = se?'':'none';
     $('seasonCopyBtn').style.display = se?'':'none';
     renderSeasonLabelPicker(); renderSeasonFormatList();
@@ -1648,9 +1650,9 @@
     var cur=editingSeason.id?seasonById(editingSeason.id):null;
     var ents=collectSeasonEntrants(cur);
     if(cur){
-      cur.labelId=seasonSelLabel; cur.name=name; cur.from=from; cur.to=to; cur.formatIds=seasonSelFormats.slice(); cur.entrants=ents;
+      cur.labelId=seasonSelLabel; cur.name=name; cur.from=from; cur.to=to; cur.formatIds=seasonSelFormats.slice(); cur.entrants=ents; cur.useHalf=$('seasonHalf').checked;
     } else {
-      seasons.push({id:genId(), labelId:seasonSelLabel, name:name, from:from, to:to, formatIds:seasonSelFormats.slice(), entrants:ents});
+      seasons.push({id:genId(), labelId:seasonSelLabel, name:name, from:from, to:to, formatIds:seasonSelFormats.slice(), entrants:ents, useHalf:$('seasonHalf').checked});
     }
     saveAll(); showSheet('seasons'); renderSeasonsList();
   }
@@ -1658,7 +1660,7 @@
     if(!editingSeason.id) return;
     var cur=seasonById(editingSeason.id); if(!cur) return;
     var ents=collectSeasonEntrants(cur).map(function(en){ return {id:genId(), name:en.name}; });
-    var ns={id:genId(), labelId:seasonSelLabel, name:$('seasonNameInput').value.trim()+' コピー', from:'', to:'', formatIds:seasonSelFormats.slice(), entrants:ents};
+    var ns={id:genId(), labelId:seasonSelLabel, name:$('seasonNameInput').value.trim()+' コピー', from:'', to:'', formatIds:seasonSelFormats.slice(), entrants:ents, useHalf:$('seasonHalf').checked};
     seasons.push(ns); saveAll();
     openSeasonEditor(ns); toast('複製しました。期間を入力してください');
   }
@@ -1768,13 +1770,15 @@
     round.gaps=round.gaps||{}; round.dnf=round.dnf||{};
     var hasFin=finTable(fmt).length>0;
 
-    // ハーフトグル
-    var hr=document.createElement('div'); hr.className='half-row';
-    hr.innerHTML='<span class="t">ハーフポイント（点数を半分）</span>';
-    var sw=document.createElement('label'); sw.className='switch';
-    sw.innerHTML='<input type="checkbox"'+(round.half?' checked':'')+'><span class="track"></span><span class="thumb"></span>';
-    sw.querySelector('input').addEventListener('change',function(){ round.half=this.checked; renderResult(); });
-    hr.appendChild(sw); body.appendChild(hr);
+    // ハーフトグル（シーズンで有効なときのみ）
+    if(se.useHalf){
+      var hr=document.createElement('div'); hr.className='half-row';
+      hr.innerHTML='<span class="t">ハーフポイント（点数を半分）</span>';
+      var sw=document.createElement('label'); sw.className='switch';
+      sw.innerHTML='<input type="checkbox"'+(round.half?' checked':'')+'><span class="track"></span><span class="thumb"></span>';
+      sw.querySelector('input').addEventListener('change',function(){ round.half=this.checked; renderResult(); });
+      hr.appendChild(sw); body.appendChild(hr);
+    } else if(round.half){ round.half=false; }
 
     // 着順リスト
     var pts=pointsFor(round, fmt);
